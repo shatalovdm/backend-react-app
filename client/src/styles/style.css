@@ -1,0 +1,50 @@
+html,
+body {
+	height: 100%;
+}
+
+.container {
+	margin: 0;
+	width: 100%;
+	max-width: none;
+}
+main {
+	padding: 20px;
+}
+#header nav {
+	background-color: white;
+}
+#header a {
+	color: black;
+}
+.nav-wrapper,
+#footer {
+	padding: 0 20px;
+}
+#landing {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 500px;
+	color: white;
+	text-shadow: 1px 1px 2px #000000;
+	background: url('../utils/background.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+#account {
+	text-align: center;
+}
+#account img {
+	height: 100px;
+	width: 100px;
+}
+.block {
+	margin: 20px;
+	padding: 15px;
+}
+.block-shadow {
+	background-color: #f2f2f2;
+}

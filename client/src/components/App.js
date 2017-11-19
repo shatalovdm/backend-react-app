@@ -3,10 +3,11 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 import Header from './Header';
-
-const Account = () => <div>Account</div>;
-const NewRace = () => <div>New Race</div>;
-const Home = () => <div>Home</div>;
+import Home from './Home';
+import Footer from './Footer';
+import Account from './account/Account';
+import NewRace from './races/NewRace';
+import '../styles/style.css';
 
 class App extends Component {
 	componentDidMount() {
@@ -19,8 +20,9 @@ class App extends Component {
 					<div>
 						<Header />
 						<Route exact path="/" component={Home} />
-						<Route path="/account" component={Account} />
+						<Route exect path="/account" component={Account} />
 						<Route path="/races/new" component={NewRace} />
+						<Footer />
 					</div>
 				</BrowserRouter>
 			</div>

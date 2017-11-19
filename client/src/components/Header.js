@@ -1,22 +1,58 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
-	render() {
-		return (
-			<nav>
-				<div className="nav-wrapper">
-					<a href="#" className="brand-logo">
-						RunHub
-					</a>
+	renderContent() {
+		switch (this.props.auth) {
+			case null:
+				return;
+			case false:
+				return (
 					<ul className="right">
 						<li>
-							<a href="collapsible.html">Login</a>
+							<a href="/auth/facebook">Login with Facebook</a>
+						</li>
+						<li>
+							<a href="/auth/google">Login with Google</a>
 						</li>
 					</ul>
-				</div>
-			</nav>
+				);
+			default:
+				return (
+					<ul className="right">
+						<li>
+							<Link to="/races/new">New Race</Link>
+						</li>
+						<li>
+							<Link to="/account">Account</Link>
+						</li>
+						<li>
+							<a href="/logout">Logout</a>
+						</li>
+					</ul>
+				);
+		}
+	}
+
+	render() {
+		return (
+			<header id="header" className="navbar-fixed">
+				<nav>
+					<div className="nav-wrapper">
+						<Link to="/" className="brand-logo left">
+							RunHub
+						</Link>
+						{this.renderContent()}
+					</div>
+				</nav>
+			</header>
 		);
 	}
 }
 
-export default Header;
+function mapStateToProps({ auth }) {
+	return { auth };
+}
+
+export default connect(mapStateToProps)(Header);

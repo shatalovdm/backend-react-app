@@ -6,7 +6,13 @@
     "/auth/google": {
       "target": "http://localhost:5000"
     },
+    "/auth/facebook": {
+      "target": "http://localhost:5000"
+    },
     "/current_user": {
+      "target": "http://localhost:5000"
+    },
+    "/logout": {
       "target": "http://localhost:5000"
     }
   },

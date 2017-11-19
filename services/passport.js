@@ -27,7 +27,13 @@ passport.use(
 			if (foundUser) {
 				return done(null, foundUser);
 			}
-			const user = await new User({ googleId: profile.id }).save();
+			const data = profile._json;
+			const user = await new User({
+				googleId: data.id,
+				name: data.displayName,
+				email: data.emails[0].value,
+				avatar: data.image.url
+			}).save();
 			done(null, user);
 		}
 	)
@@ -39,6 +45,12 @@ passport.use(
 			clientID: keys.facebookID,
 			clientSecret: keys.facebookSecret,
 			callbackURL: '/auth/facebook/callback',
+			profileFields: [
+				'id',
+				'displayName',
+				'email',
+				'picture.type(large)'
+			],
 			proxy: true
 		},
 		async (accessToken, refreshToken, profile, done) => {
@@ -46,7 +58,13 @@ passport.use(
 			if (foundUser) {
 				return done(null, foundUser);
 			}
-			const user = await new User({ facebookId: profile.id }).save();
+			const data = profile._json;
+			const user = await new User({
+				facebookId: data.id,
+				name: data.name,
+				email: data.email,
+				avatar: data.picture.data.url
+			}).save();
 			done(null, user);
 		}
 	)
